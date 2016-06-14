@@ -5,3 +5,5 @@
 * RESTクライアント軽量版
 * 認証を意識していない作り
 * Executeボタン押したらGETリクエスト投げて、受け取ったJSONをViewに表示するだけ
+* Android Studio 2.1
+* Android 5.0以上対応
