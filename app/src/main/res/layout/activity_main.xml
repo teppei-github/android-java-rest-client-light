@@ -12,5 +12,37 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="REST Client"
+        android:id="@+id/textView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtRequestUri"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp"
+        android:layout_alignParentEnd="true"
+        android:text="http://172.16.19.194:8080/NsoArchSpringApp/api/sample/" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Execute"
+        android:id="@+id/btnExecute"
+        android:layout_below="@+id/txtRequestUri"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/txtViewResponse"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/btnExecute"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/txtRequestUri"
+        android:background="@drawable/view_frame"
+        android:height="200dp" />
+
 </RelativeLayout>
