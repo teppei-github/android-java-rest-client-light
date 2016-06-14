@@ -6,6 +6,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -21,11 +28,37 @@ public class MainActivity extends AppCompatActivity {
         btnExecute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CharSequence strUri = txtRequestUri.getText();
+                final CharSequence strUri = txtRequestUri.getText();
 
-                txtViewRespose.setText(strUri);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            URL url = new URL(strUri.toString());
+                            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+                            con.setRequestMethod("GET");
+                            con.connect();
+
+                            String str = InputStreamToString(con.getInputStream());
+                            txtViewRespose.setText(str);
+
+                        } catch (Exception e) {
+                            //
+                        }
+                    }
+                }).start();
             }
         });
+    }
 
+    static String InputStreamToString(InputStream is) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            sb.append(line);
+        }
+        br.close();
+        return sb.toString();
     }
 }
